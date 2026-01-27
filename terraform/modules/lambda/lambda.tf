@@ -38,12 +38,13 @@ resource "aws_iam_role" "lambda_execution_role" {
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
+
+# Lambda cloudwatch perms
 resource "aws_iam_role_policy_attachment" "lambda_logs" {
   role       = aws_iam_role.lambda_execution_role.name
   policy_arn = aws_iam_policy.lambda_logging.arn
 }
 
-# Package the Lambda function code
 data "archive_file" "lambda_zip_package" {
   type        = "zip"
   source_file = "${path.module}/../../../lambda/lambda_function.py"

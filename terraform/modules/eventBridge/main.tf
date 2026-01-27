@@ -15,7 +15,7 @@ resource "aws_cloudwatch_event_target" "cloudwatch_event_target" {
 EOF
   }
 }
-
+## Allows execution of lambda from event bridge 
 resource "aws_lambda_permission" "allow_eventbridge" {
   statement_id  = "AllowExecutionFromEventBridge"
   action        = "lambda:InvokeFunction"
