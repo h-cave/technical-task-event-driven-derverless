@@ -49,3 +49,6 @@ As an engineer, you will pair with a colleague to conduct a spike into building 
 - Ensure the solution is environment-agnostic (e.g. dev / prod).
 
 - Include basic documentation explaining how the system works.
+
+
+#### Note, to tick off tasks you can use `&#9745;` which will do &#9745;

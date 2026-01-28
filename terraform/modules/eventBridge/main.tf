@@ -1,9 +1,11 @@
+# Cloudwatch event rule and schedule
 resource "aws_cloudwatch_event_rule" "test_lambda_event" {
   name                = "TestEventLambda"
   description         = "Hit lambda every 10 minutes"
   schedule_expression = "rate(10 minutes)"
 }
 
+# Links the rule to the lambda and descibes the payload
 resource "aws_cloudwatch_event_target" "cloudwatch_event_target" {
   arn  = var.lambda_arn
   rule = aws_cloudwatch_event_rule.test_lambda_event.id
@@ -11,6 +13,8 @@ resource "aws_cloudwatch_event_target" "cloudwatch_event_target" {
   input_transformer {
     input_template = <<EOF
 {
+  "name": "gary",
+  "age": "20"
 }
 EOF
   }

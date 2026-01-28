@@ -11,7 +11,7 @@ data "aws_iam_policy_document" "assume_role" {
     actions = ["sts:AssumeRole"]
   }
 }
-
+# Policy to allow lambda to put logs and create log groups and stream in cloudwatch
 resource "aws_iam_policy" "lambda_logging" {
   name        = "lambda_logging"
   path        = "/"
@@ -32,14 +32,14 @@ resource "aws_iam_policy" "lambda_logging" {
     ]
   })
 }
-
+# Role used for lambda execution
 resource "aws_iam_role" "lambda_execution_role" {
   name               = "lambda_execution_role"
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
 }
 
 
-# Lambda cloudwatch perms
+# Lambda cloudwatch perms attached to lambda execution role
 resource "aws_iam_role_policy_attachment" "lambda_logs" {
   role       = aws_iam_role.lambda_execution_role.name
   policy_arn = aws_iam_policy.lambda_logging.arn

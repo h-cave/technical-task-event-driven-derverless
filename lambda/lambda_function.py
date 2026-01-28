@@ -10,6 +10,10 @@ def lambda_handler(event, context):
     logger.info(os.environ['AWS_LAMBDA_LOG_GROUP_NAME'])
     logger.info(os.environ['AWS_LAMBDA_LOG_STREAM_NAME'])
     logger.info('## EVENT')
-    logger.info(event)
+
+    if event["name"] == "gary":
+        logger.info(event["name"])
+    else:
+        logger.info("No name specified")
     
     return event
